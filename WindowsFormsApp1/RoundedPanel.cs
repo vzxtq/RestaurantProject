@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         {
             this.DoubleBuffered = true;
             this.Padding = new Padding(CornerRadius, CornerRadius, CornerRadius, CornerRadius);
-            this.BackColor = Color.Transparent; // Use PanelBackColor for drawing
+            this.BackColor = Color.Transparent;
         }
 
         protected override void OnResize(EventArgs eventargs)
@@ -46,20 +46,17 @@ namespace WindowsFormsApp1
             {
                 e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // Optional: Draw shadow for modern look
                 using (var shadowBrush = new SolidBrush(Color.FromArgb(30, 0, 0, 0)))
                 {
-                    var shadowPath = GetRoundedPath(4, 4); // Offset shadow
+                    var shadowPath = GetRoundedPath(4, 4);
                     e.Graphics.FillPath(shadowBrush, shadowPath);
                 }
 
-                // Fill background
                 using (var brush = new SolidBrush(this.PanelBackColor))
                 {
                     e.Graphics.FillPath(brush, path);
                 }
 
-                // Draw border
                 using (var pen = new Pen(BorderColor, BorderThickness))
                 {
                     e.Graphics.DrawPath(pen, path);
